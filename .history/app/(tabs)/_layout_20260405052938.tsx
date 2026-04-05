@@ -1,5 +1,8 @@
+// tabs/_layout.tsx
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
+import { StyleSheet } from "react-native";
+import C from "../constants/colors"; // adjust path if needed
 
 export default function TabLayout() {
   return (
@@ -7,8 +10,7 @@ export default function TabLayout() {
       screenOptions={{
         tabBarShowLabel: true,
         tabBarStyle: { height: 60 },
-        tabBarActiveTintColor: "#D4437C",
-        headerShown: false,
+        tabBarActiveTintColor: C.primarySoft,
       }}
     >
       <Tabs.Screen
@@ -30,11 +32,20 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="stylesync"
+        name="stylist"
         options={{
           title: "Stylist",
           tabBarIcon: ({ color }) => (
-            <Ionicons name="color-wand" size={24} color={color} />
+            <Ionicons name="person" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="admin"
+        options={{
+          title: "Admin",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="settings" size={24} color={color} />
           ),
         }}
       />
@@ -47,7 +58,18 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen name="admin2" options={{ href: null }} />
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabLabel: { fontSize: 11, fontWeight: "600", marginTop: 2 },
+  iconWrap: {
+    width: 42,
+    height: 32,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 12,
+  },
+  iconWrapActive: { backgroundColor: C.primarySoft },
+});

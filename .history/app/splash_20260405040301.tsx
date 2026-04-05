@@ -1,3 +1,4 @@
+import { C } from "@/constants/theme";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React, { useEffect, useRef } from "react";
@@ -11,18 +12,6 @@ import {
 } from "react-native";
 
 const { width, height } = Dimensions.get("window");
-
-// Hardcoded colors - no import needed
-const C = {
-  bg: "#FFF0F3",
-  primary: "#D4437C",
-  primaryDark: "#B8326E",
-  primaryLight: "#F472B6",
-  text: "#1A1A2E",
-  textMuted: "#9E9EBE",
-  white: "#FFFFFF",
-  shadow: "rgba(212,67,124,0.3)",
-};
 
 export default function SplashScreen() {
   const router = useRouter();
@@ -58,6 +47,8 @@ export default function SplashScreen() {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={C.bg} />
+
+      {/* Soft blush background circles */}
       <View style={styles.circle1} />
       <View style={styles.circle2} />
       <View style={styles.circle3} />
@@ -68,6 +59,7 @@ export default function SplashScreen() {
           { opacity: fadeAnim, transform: [{ scale: scaleAnim }] },
         ]}
       >
+        {/* Logo box */}
         <LinearGradient
           colors={[C.primary, C.primaryDark]}
           style={styles.logoBox}

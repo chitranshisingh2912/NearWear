@@ -1,5 +1,11 @@
 import { useRouter } from "expo-router";
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import {
+    addDoc,
+    collection,
+    getDocs,
+    query,
+    where
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import {
     ActivityIndicator,
@@ -10,7 +16,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import { auth, db } from "./firebaseConfig";
+import { auth, db } from "../firebaseConfig";
 
 export default function ReviewsScreen() {
   const router = useRouter();

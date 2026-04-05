@@ -13,20 +13,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { auth } from "./firebaseConfig"; // ✅ Same folder
-
-const C = {
-  bg: "#FFF0F3",
-  card: "#FFFFFF",
-  surface: "#FFE4EC",
-  border: "rgba(212,67,124,0.18)",
-  borderLight: "rgba(212,67,124,0.10)",
-  primary: "#D4437C",
-  text: "#1A1A2E",
-  textSec: "#5A5A7A",
-  textMuted: "#9E9EBE",
-  white: "#FFFFFF",
-};
+import { C } from "./constants/theme";
+import { auth } from "./firebaseConfig";
 
 export default function Login() {
   const router = useRouter();
@@ -39,9 +27,11 @@ export default function Login() {
       Alert.alert("Error", "Please fill in all fields");
       return;
     }
+
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      // ✅ Navigate to tabs after login
       router.replace("/(tabs)/home");
     } catch (error: any) {
       Alert.alert("Login Failed", error.message);
@@ -59,11 +49,13 @@ export default function Login() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        {/* Header */}
         <View style={styles.header}>
           <Text style={styles.title}>Welcome Back! 👋</Text>
           <Text style={styles.subtitle}>Sign in to continue shopping</Text>
         </View>
 
+        {/* Form */}
         <View style={styles.form}>
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Email</Text>
@@ -107,6 +99,7 @@ export default function Login() {
           </TouchableOpacity>
         </View>
 
+        {/* Footer */}
         <View style={styles.footer}>
           <Text style={styles.footerText}>Don't have an account?</Text>
           <TouchableOpacity onPress={() => router.push("/signup")}>
@@ -119,19 +112,40 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: C.bg },
+  container: {
+    flex: 1,
+    backgroundColor: C.bg,
+  },
   scrollContent: {
     flexGrow: 1,
     paddingHorizontal: 24,
     paddingTop: 80,
     paddingBottom: 40,
   },
-  header: { marginBottom: 40 },
-  title: { fontSize: 32, fontWeight: "800", color: C.text, marginBottom: 8 },
-  subtitle: { fontSize: 16, color: C.textSec },
-  form: { gap: 20 },
-  inputGroup: { gap: 8 },
-  label: { fontSize: 14, fontWeight: "600", color: C.text },
+  header: {
+    marginBottom: 40,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: "800",
+    color: C.text,
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: C.textSec,
+  },
+  form: {
+    gap: 20,
+  },
+  inputGroup: {
+    gap: 8,
+  },
+  label: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: C.text,
+  },
   input: {
     backgroundColor: C.white,
     borderRadius: 12,
@@ -142,8 +156,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: C.text,
   },
-  forgotBtn: { alignSelf: "flex-end" },
-  forgotText: { color: C.primary, fontWeight: "600", fontSize: 14 },
+  forgotBtn: {
+    alignSelf: "flex-end",
+  },
+  forgotText: {
+    color: C.primary,
+    fontWeight: "600",
+    fontSize: 14,
+  },
   loginBtn: {
     backgroundColor: C.primary,
     borderRadius: 14,
@@ -151,7 +171,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 10,
   },
-  loginBtnText: { color: C.white, fontSize: 16, fontWeight: "700" },
+  loginBtnText: {
+    color: C.white,
+    fontSize: 16,
+    fontWeight: "700",
+  },
   footer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -159,6 +183,13 @@ const styles = StyleSheet.create({
     marginTop: "auto",
     paddingTop: 40,
   },
-  footerText: { color: C.textSec, fontSize: 14 },
-  signupText: { color: C.primary, fontWeight: "700", fontSize: 14 },
+  footerText: {
+    color: C.textSec,
+    fontSize: 14,
+  },
+  signupText: {
+    color: C.primary,
+    fontWeight: "700",
+    fontSize: 14,
+  },
 });

@@ -238,7 +238,7 @@ export default function ProfileScreen() {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.actionCard}
-              onPress={() => router.push("/(tabs)/admin2")}
+              onPress={() => router.push("/admin")}
             >
               <View
                 style={[

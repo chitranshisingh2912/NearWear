@@ -13,8 +13,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { auth } from "./firebaseConfig"; // ✅ Same folder
+import { auth } from "./firebaseConfig";
 
+// LOCAL COLORS - No import needed, guaranteed to work
 const C = {
   bg: "#FFF0F3",
   card: "#FFFFFF",
@@ -39,6 +40,7 @@ export default function Login() {
       Alert.alert("Error", "Please fill in all fields");
       return;
     }
+
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -119,19 +121,40 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: C.bg },
+  container: {
+    flex: 1,
+    backgroundColor: C.bg,
+  },
   scrollContent: {
     flexGrow: 1,
     paddingHorizontal: 24,
     paddingTop: 80,
     paddingBottom: 40,
   },
-  header: { marginBottom: 40 },
-  title: { fontSize: 32, fontWeight: "800", color: C.text, marginBottom: 8 },
-  subtitle: { fontSize: 16, color: C.textSec },
-  form: { gap: 20 },
-  inputGroup: { gap: 8 },
-  label: { fontSize: 14, fontWeight: "600", color: C.text },
+  header: {
+    marginBottom: 40,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: "800",
+    color: C.text,
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: C.textSec,
+  },
+  form: {
+    gap: 20,
+  },
+  inputGroup: {
+    gap: 8,
+  },
+  label: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: C.text,
+  },
   input: {
     backgroundColor: C.white,
     borderRadius: 12,
@@ -142,8 +165,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: C.text,
   },
-  forgotBtn: { alignSelf: "flex-end" },
-  forgotText: { color: C.primary, fontWeight: "600", fontSize: 14 },
+  forgotBtn: {
+    alignSelf: "flex-end",
+  },
+  forgotText: {
+    color: C.primary,
+    fontWeight: "600",
+    fontSize: 14,
+  },
   loginBtn: {
     backgroundColor: C.primary,
     borderRadius: 14,
@@ -151,7 +180,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 10,
   },
-  loginBtnText: { color: C.white, fontSize: 16, fontWeight: "700" },
+  loginBtnText: {
+    color: C.white,
+    fontSize: 16,
+    fontWeight: "700",
+  },
   footer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -159,6 +192,13 @@ const styles = StyleSheet.create({
     marginTop: "auto",
     paddingTop: 40,
   },
-  footerText: { color: C.textSec, fontSize: 14 },
-  signupText: { color: C.primary, fontWeight: "700", fontSize: 14 },
+  footerText: {
+    color: C.textSec,
+    fontSize: 14,
+  },
+  signupText: {
+    color: C.primary,
+    fontWeight: "700",
+    fontSize: 14,
+  },
 });

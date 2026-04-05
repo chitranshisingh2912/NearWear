@@ -1,16 +1,16 @@
 // app/admin.tsx – Pink theme
 import { useRouter } from "expo-router";
 import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  ActivityIndicator,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    ActivityIndicator,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
-import { db } from "../firebaseConfig";
+import { db } from "./firebaseConfig";
 
 const C = {
   bg: "#FFF0F3",

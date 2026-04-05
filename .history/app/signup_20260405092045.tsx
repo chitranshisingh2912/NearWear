@@ -1,7 +1,8 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import {
   ActivityIndicator,
@@ -15,8 +16,22 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { auth, db } from "./firebaseConfig"; // ✅ Same folder
 
+// LOCAL FIREBASE CONFIG - NO IMPORT NEEDED
+const firebaseConfig = {
+  apiKey: "AIzaSyAIwiTEnomwZoNaAd8X_xksN7AepWH64qI",
+  authDomain: "nearwear-8fc71.firebaseapp.com",
+  projectId: "nearwear-8fc71",
+  storageBucket: "nearwear-8fc71.firebasestorage.app",
+  messagingSenderId: "658283130251",
+  appId: "1:658283130251:web:a6a67638a3cd2eee51938e",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// LOCAL COLORS
 const C = {
   bg: "#FFF0F3",
   card: "#FFFFFF",
@@ -86,6 +101,7 @@ export default function SignupScreen() {
           contentContainerStyle={styles.scroll}
           showsVerticalScrollIndicator={false}
         >
+          {/* Header row */}
           <View style={styles.headerRow}>
             <TouchableOpacity
               style={styles.backBtn}
@@ -93,6 +109,8 @@ export default function SignupScreen() {
             >
               <Text style={styles.backIcon}>←</Text>
             </TouchableOpacity>
+
+            {/* Step indicator */}
             <View style={styles.stepRow}>
               <View style={[styles.stepDot, styles.stepDotActive]} />
               <View
@@ -105,6 +123,7 @@ export default function SignupScreen() {
             <View style={{ width: 44 }} />
           </View>
 
+          {/* ── STEP 1 : Choose Role ── */}
           {step === 1 && (
             <>
               <View style={styles.header}>
@@ -218,6 +237,7 @@ export default function SignupScreen() {
             </>
           )}
 
+          {/* ── STEP 2 : Fill Details ── */}
           {step === 2 && (
             <>
               <View style={styles.header}>
@@ -338,6 +358,7 @@ export default function SignupScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: C.bg },
   scroll: { flexGrow: 1, paddingHorizontal: 24, paddingBottom: 40 },
+
   headerRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -356,6 +377,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   backIcon: { color: C.text, fontSize: 20, fontWeight: "600" },
+
   stepRow: { flexDirection: "row", alignItems: "center" },
   stepDot: {
     width: 10,
@@ -371,9 +393,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   stepLineActive: { backgroundColor: C.primary },
+
   header: { marginBottom: 28 },
   title: { fontSize: 30, fontWeight: "900", color: C.text, marginBottom: 8 },
   subtitle: { fontSize: 15, color: C.textSec },
+
   rolesContainer: { gap: 16, marginBottom: 28 },
   roleCard: {
     borderRadius: 20,
@@ -412,10 +436,12 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 14,
   },
+
   roleFeatures: { gap: 8 },
   featureRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   checkmark: { color: C.primary, fontWeight: "700", fontSize: 14 },
   featureText: { fontSize: 13, color: C.textSec },
+
   errorBox: {
     backgroundColor: "rgba(229,57,53,0.08)",
     borderRadius: 12,
@@ -425,6 +451,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(229,57,53,0.25)",
   },
   errorText: { color: C.error, fontSize: 13, textAlign: "center" },
+
   inputGroup: { marginBottom: 16 },
   label: { color: C.textSec, fontSize: 13, fontWeight: "600", marginBottom: 8 },
   inputBox: {
@@ -439,6 +466,7 @@ const styles = StyleSheet.create({
   input: { color: C.text, fontSize: 15, paddingVertical: 16, flex: 1 },
   eyeBtn: { padding: 8 },
   eyeText: { color: C.primary, fontSize: 13, fontWeight: "600" },
+
   terms: {
     fontSize: 12,
     color: C.textMuted,
@@ -447,6 +475,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   termsLink: { color: C.primary, fontWeight: "600" },
+
   continueBtn: { borderRadius: 16, overflow: "hidden", marginBottom: 12 },
   btnGradient: { padding: 17, alignItems: "center" },
   continueBtnText: {
@@ -455,6 +484,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: 0.3,
   },
+
   footer: { flexDirection: "row", justifyContent: "center", marginTop: 24 },
   footerText: { color: C.textSec, fontSize: 14 },
   footerLink: { color: C.primary, fontSize: 14, fontWeight: "700" },

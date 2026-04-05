@@ -1,3 +1,4 @@
+import { C } from "@/constants/theme";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React, { useEffect, useRef } from "react";
@@ -13,23 +14,6 @@ import {
 } from "react-native";
 
 const { width, height } = Dimensions.get("window");
-
-// LOCAL COLORS - NO IMPORT NEEDED
-const C = {
-  bg: "#FFF0F3",
-  card: "#FFFFFF",
-  surface: "#FFE4EC",
-  border: "rgba(212,67,124,0.18)",
-  borderLight: "rgba(212,67,124,0.10)",
-  primary: "#D4437C",
-  primaryDark: "#B8326E",
-  primarySoft: "rgba(212,67,124,0.10)",
-  text: "#1A1A2E",
-  textSec: "#5A5A7A",
-  textMuted: "#9E9EBE",
-  white: "#FFFFFF",
-  shadow: "rgba(212,67,124,0.08)",
-};
 
 export default function WelcomeScreen() {
   const router = useRouter();
@@ -63,7 +47,7 @@ export default function WelcomeScreen() {
         style={styles.backgroundImage}
       />
 
-      {/* Gradient overlay */}
+      {/* Gradient overlay — light, goes from transparent to bg */}
       <LinearGradient
         colors={[
           "transparent",

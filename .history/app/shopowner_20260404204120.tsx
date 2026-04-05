@@ -3,17 +3,17 @@ import { useRouter } from "expo-router";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import {
-    ActivityIndicator,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
+import { auth, db } from "../firebaseConfig";
 import AIUploadScreen from "./aiupload";
-import { auth, db } from "./firebaseConfig";
 
 export default function ShopOwnerDashboard() {
   const router = useRouter();

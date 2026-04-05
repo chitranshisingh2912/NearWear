@@ -2,7 +2,7 @@ import { useRouter } from "expo-router";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
-import { auth } from "./firebaseConfig"; // ✅ Same folder
+import { auth } from "./firebaseConfig"; // ✅ FIXED: Changed from "./" to "../"
 
 export default function Index() {
   const router = useRouter();

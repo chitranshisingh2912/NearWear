@@ -3,20 +3,20 @@ import * as ImagePicker from "expo-image-picker";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useRef, useState } from "react";
 import {
-    ActivityIndicator,
-    Alert,
-    Animated,
-    Image,
-    Modal,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Alert,
+  Animated,
+  Image,
+  Modal,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { auth, db } from "./firebaseConfig";
+import { auth, db } from "../firebaseConfig";
 
 const OPENROUTER_API_KEY =
   "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";

@@ -1,5 +1,6 @@
 import { useRouter } from "expo-router";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import {
   ActivityIndicator,
@@ -13,8 +14,21 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { auth } from "./firebaseConfig"; // ✅ Same folder
 
+// LOCAL FIREBASE CONFIG - NO IMPORT NEEDED
+const firebaseConfig = {
+  apiKey: "AIzaSyAIwiTEnomwZoNaAd8X_xksN7AepWH64qI",
+  authDomain: "nearwear-8fc71.firebaseapp.com",
+  projectId: "nearwear-8fc71",
+  storageBucket: "nearwear-8fc71.firebasestorage.app",
+  messagingSenderId: "658283130251",
+  appId: "1:658283130251:web:a6a67638a3cd2eee51938e",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// LOCAL COLORS
 const C = {
   bg: "#FFF0F3",
   card: "#FFFFFF",
@@ -39,6 +53,7 @@ export default function Login() {
       Alert.alert("Error", "Please fill in all fields");
       return;
     }
+
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
